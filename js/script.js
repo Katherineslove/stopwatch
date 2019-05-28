@@ -25,17 +25,20 @@ $(document).ready(function(){
 
     $('#start').click(function(){
         var seconds = 0;
+        var minutes = 0;
         setInterval(function(){
             // console.log('this is happening every second');
             seconds++;
+
+                    if (seconds == 60) {
+                      minutes ++;
+                      seconds = 0;
+                    }
+
             console.log(seconds);
             $('#seconds').text(seconds);
-        }, 1000);
+        }, 100);
 
-        if (seconds >= 60) {
-          seconds = 1;
-          $('#seconds').text(seconds);
-        }
     });
 
 });
