@@ -1,0 +1,10 @@
+* {
+    box-sizing: border-box;
+    padding: 14px;
+    margin: 0;
+}
+
+h1 {
+  font-family: 'Questrial', sans-serif;
+  text-align: center;
+}
