@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     // setInterval()
     // setTimeout()
     // setTimeout(function() {
@@ -22,23 +21,56 @@ $(document).ready(function(){
     //   console.log('this is happening every two seconds');
     // }, 2000);
 
+    var timer;
+    var seconds = 0;
+    var minutes = 0;
 
     $('#start').click(function(){
-        var seconds = 0;
-        var minutes = 0;
-        setInterval(function(){
-            // console.log('this is happening every second');
-            seconds++;
-
-                    if (seconds == 60) {
-                      minutes ++;
-                      seconds = 0;
-                    }
-
-            console.log(seconds);
-            $('#seconds').text(seconds);
-        }, 100);
-
+        $(this).hide();
+        $('#pause').removeClass('d-none').show();
+        setTimerInterval();
     });
 
-});
+    $('#pause').click(function(){
+        $(this).hide();
+        $('#continue').removeClass('d-none').show();
+        $('#reset').removeClass('d-none').show();
+        clearTimeout(timer);
+    });
+
+    $('#continue').click(function(){
+        $(this).hide();
+        $('#reset').hide();
+        $('#pause').show();
+        setTimerInterval();
+      });
+
+    $('#reset').click(function(){
+        $(this).hide();
+        $('#start').show();
+        $('#continue').hide();
+        $('#minutes').text('0');
+        $('#seconds').text('00');
+        seconds = 0;
+        minutes = 0;
+    })
+
+    function setTimerInterval(){
+        timer = setInterval(function(){
+            // console.log('this is happening every second');
+            seconds++;
+            if(seconds == 60){
+                minutes++;
+                seconds = 0;
+                $('#minutes').text(minutes);
+              }
+                if(seconds < 10){
+                    $('#seconds').text('0'+seconds);
+                } else {
+                    $('#seconds').text(seconds);
+                }
+
+            }, 1000);
+        }
+
+    });
